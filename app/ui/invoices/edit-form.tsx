@@ -11,8 +11,15 @@ import { Button } from "@/app/ui/button";
 import { useActionState } from "react";
 import { authenticate } from "@/app/lib/actions";
 import { useSearchParams } from "next/navigation";
+import { InvoiceForm, CustomerField } from "@/app/lib/definitions";
 
-export default function LoginForm() {
+export default function LoginForm({
+  invoice,
+  customers,
+}: {
+  invoice: InvoiceForm;
+  customers: CustomerField[];
+}) {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [errorMessage, formAction, isPending] = useActionState(
